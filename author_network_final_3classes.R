@@ -1,7 +1,6 @@
 #https://github.com/mihai-craita/countries_center_box/blob/master/countries.csv
 library(readxl)
 library(dplyr)
-library(dplyr)
 library(purrr)
 library(igraph)
 library(ggplot2)
@@ -547,6 +546,37 @@ print(p)
 png("plots/network_map_noLegend_2_colors_3CLASS_withoutCircles.jpg",width = 20, height = 10, units = "cm", pointsize = 3, res=500) 
 print(p)
 dev.off()
+
+
+#3 separate
+p1 <- p_base +
+  annotation_custom(ggplotGrob(p_edges_dest_afr), ymin = -74)
+
+p2 <- p_base +
+  annotation_custom(ggplotGrob(p_edges_both), ymin = -74) 
+
+p3 <- p_base +
+  annotation_custom(ggplotGrob(p_edges_ori_afr), ymin = -74)
+#annotation_custom(ggplotGrob(p_nodes_noLegend2), ymin= -74)
+
+
+# print(p1)
+
+# Export
+png("plots/network_map_noLegend_2_colors_3CLASS_withoutCircles_OVERSEAS.jpg",width = 20, height = 10, units = "cm", pointsize = 3, res=500) 
+print(p1)
+dev.off()
+
+png("plots/network_map_noLegend_2_colors_3CLASS_withoutCircles_BOTH.jpg",width = 20, height = 10, units = "cm", pointsize = 3, res=500) 
+print(p2)
+dev.off()
+
+png("plots/network_map_noLegend_2_colors_3CLASS_withoutCircles_AFRICA.jpg",width = 20, height = 10, units = "cm", pointsize = 3, res=500) 
+print(p3)
+dev.off()
+
+
+
 
 
 #With country circles
